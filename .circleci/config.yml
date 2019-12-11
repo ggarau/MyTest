@@ -6,15 +6,14 @@ jobs:
     working_directory: /mio
     steps:
       - checkout
-      - run: mkdir -p build && cd build
+      #- run: mkdir -p build && cd build
       - run: g++ -o main Test_endian.c -std=c++11
       - run: pwd
       - run: ls -la
       - run: ./main
-      - run: Write-Host 'Hello da lukg'
       - store_artifacts:
             path: /mio/main
-            destination: ExeFile
+            destination: test_endian.exe
 
 workflows:
   version: 2
