@@ -18,7 +18,8 @@ jobs:
           command: 'apt-get update && apt-get install -y gcc-arm-linux-gnueabihf'
      # - run: apt-get install gcc-arm-linux-gnueabihf
       - run: g++ -o main Test_endian.c -std=c++11
-      - run: arm-linux-gnueabi-gcc -o main_arm Test_endian.c -std=c++11
+      - run: arm-linux-gnueabihf-gcc -o main_arm Test_endian.c -std=c++11
+      
       - run: pwd
       - run: ls -la
       - run: ./main
