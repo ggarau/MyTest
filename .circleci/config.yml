@@ -20,15 +20,19 @@ jobs:
       - run: g++ -o main Test_endian.c -std=c++11
       - run: arm-linux-gnueabihf-gcc -o main_arm Test_endian.c -std=c++11
       
-      - run: pwd
-      - run: ls -la
-      - run: ./main
+      #- run: pwd
+      #- run: ls -la
+      - run: mkdir ./artifacts
+      - run: cp main* ./artifacts
+      
       - store_artifacts:
             path: /mio/main
             destination: test_endian
       - store_artifacts:
             path: /mio/main_arm
             destination: test_endian_arm
+      - run: ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
+
 
 workflows:
   version: 2
