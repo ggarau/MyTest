@@ -3,6 +3,8 @@ jobs:
   build_gcc_latest:
     docker:
       - image: gcc:latest
+      - image: arm32v7/gcc:latest
+      
     working_directory: /mio
     steps:
       - checkout
@@ -13,7 +15,7 @@ jobs:
       - run: ./main
       - store_artifacts:
             path: /mio/main
-            destination: test_endian.exe
+            destination: test_endian
 
 workflows:
   version: 2
