@@ -26,7 +26,7 @@ jobs:
       - run: arm-linux-gnueabihf-gcc -o main_arm Test_endian.c -std=c++11
   
   
-      - run: ls -la
+      - run: ls ./go
       - run: which go
       - run: echo $GOPATH
       - run: find . -name ghr
