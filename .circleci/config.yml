@@ -1,11 +1,23 @@
 version: 2.1
-
-orbs:
-  win: circleci/windows@1.0.0
-
 jobs:
-  build:
-    executor: win/vs2019
+  build_gcc_latest:
+    docker:
+      - image: gcc:latest
+    working_directory: /mio
     steps:
       - checkout
-      - run: Write-Host 'Hello, Windows'
+      - run: mkdir -p build && cd build
+      - run: g++ -o main main.cpp -std=c++11
+      - run: pwd
+      - run: ls -la
+      - run: ./main
+      - run: Write-Host 'Hello, da lukg'
+      - store_artifacts:
+            path: /mio/main
+            destination: ExeFile
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build_gcc_latest
