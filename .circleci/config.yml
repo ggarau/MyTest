@@ -4,6 +4,8 @@ jobs:
     docker:
       - image: gcc:latest
     #  - image: arm32v7/gcc:latest
+    environment:
+          GO111MODULE: "on"
       
     working_directory: /mio
     steps:
