@@ -21,7 +21,7 @@ jobs:
       - run: arm-linux-gnueabihf-gcc -o main_arm Test_endian.c -std=c++11
       
       #- run: pwd
-      - run: find / -name ghr
+      - run: find /home/ -name ghr
       - run: mkdir ./artifacts
       - run: cp main* ./artifacts
       
