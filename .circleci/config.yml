@@ -26,6 +26,8 @@ jobs:
       - store_artifacts:
             path: /mio/main
             destination: test_endian
+            path: /mio/main_arm
+            destination: test_endian_arm
 
 workflows:
   version: 2
