@@ -13,7 +13,7 @@ main(int argc, char *argv[])
 
 
 
-    x.arr[0] = 0x11;     /* Lowest-address byte */
+    x.arr[0] = 0x11;     /* Lowest-address byte... */
     x.arr[1] = 0x22;
     x.arr[2] = 0x33;
     x.arr[3] = 0x44;     /* Highest-address byte */
