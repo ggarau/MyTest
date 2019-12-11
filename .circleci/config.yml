@@ -10,11 +10,15 @@ jobs:
       - checkout
       
       #sudo apt-get install libc6-armel-cross libc6-dev-armel-cross binutils-arm-linux-gnueabi libncurses5-dev
+      - run: mkdir ./go
+      - run: export GOPATH=./go
       - run:
           name: Installing ghr
           command: go get github.com/tcnksm/ghr
-      - run: apt-get update && apt-get install -y golang
-      - run:
+     # - run: apt-get update && apt-get install -y golang
+      
+     
+     - run:
           name: Installing GCC
           command: 'apt-get update && apt-get install -y gcc-arm-linux-gnueabihf'
      # - run: apt-get install gcc-arm-linux-gnueabihf
