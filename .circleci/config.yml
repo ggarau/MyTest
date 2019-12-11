@@ -10,7 +10,7 @@ jobs:
       - checkout
       
       #sudo apt-get install libc6-armel-cross libc6-dev-armel-cross binutils-arm-linux-gnueabi libncurses5-dev
-      - run: sudo apt-get install gcc-arm-linux-gnueabihf
+      - run: apt-get install gcc-arm-linux-gnueabihf
       - run: g++ -o main Test_endian.c -std=c++11
       - run: pwd
       - run: ls -la
