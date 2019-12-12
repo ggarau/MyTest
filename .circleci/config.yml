@@ -3,47 +3,39 @@ jobs:
   build_gcc_latest:
     docker:
       - image: gcc:latest
-    #  - image: arm32v7/gcc:latest
+   
     environment:
           GO111MODULE: "on"
       
     working_directory: /mio
+    
     steps:
       - checkout
-      
-      #sudo apt-get install libc6-armel-cross libc6-dev-armel-cross binutils-arm-linux-gnueabi libncurses5-dev
-      - run: mkdir ./go
-      - run: export GOPATH=./go
       - run:
-          name: Installing ghr
+          name: Installing ghr 
           command: go get github.com/tcnksm/ghr
-     # - run: apt-get update && apt-get install -y golang
       
-     
+      # - run: apt-get update && apt-get install -y golang
       - run:
-          name: Installing GCC
+          name: Installing GCC for ARM
           command: 'apt-get update && apt-get install -y gcc-arm-linux-gnueabihf'
-     # - run: apt-get install gcc-arm-linux-gnueabihf
+      
       - run: g++ -o main Test_endian.c -std=c++11
       - run: arm-linux-gnueabihf-gcc -o main_arm Test_endian.c -std=c++11
   
-  
-      - run: ls ./go
-      - run: which go
-      - run: echo $GOPATH
       - run: find . -name ghr
       - run: mkdir ./artifacts
       - run: cp main* ./artifacts
-      - run: ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
-
       
+      - run: /root/go/bin/ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
+
       - store_artifacts:
             path: /mio/main
             destination: test_endian
       - store_artifacts:
             path: /mio/main_arm
             destination: test_endian_arm
-     
+   
 
 workflows:
   version: 2
