@@ -28,7 +28,7 @@ jobs:
       - run: cp main* ./artifacts
       
       #- run: VERSION=$(main_arm --version)
-      - run: VERSION=$("1.0.0")
+      - run: VERSION=1.0.0
       - run: /root/go/bin/ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ./artifacts/
       
 
